@@ -1,7 +1,7 @@
 {
   "name": "linter-kibit",
   "main": "./index.js",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "An Atom Linter package for kibit (Clojure, ClojureScript)",
   "keywords": [],
   "repository": "https://github.com/rgdelato/linter-kibit",

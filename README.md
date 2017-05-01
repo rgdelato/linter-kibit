@@ -1,5 +1,12 @@
 # linter-kibit
 
-A short description of your package.
+This linter plugin for Linter provides an interface to [kibit](https://github.com/jonase/kibit). It will be used with files that have the "Clojure" syntax.
 
-![A screenshot of your package](https://f.cloud.github.com/assets/69169/2290250/c35d867a-a017-11e3-86be-cd7c5bf3ff9b.gif)
+## Installation
+
+Before using this package you will need to have [Leiningen](https://leiningen.org/) installed and available from your `$PATH`.
+
+You will also need to merge the following into your `$HOME/.lein/profiles.clj` file:
+```clojure
+{:user {:plugins [[lein-kibit "0.1.3"]]}}
+```

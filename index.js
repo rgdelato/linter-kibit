@@ -44,10 +44,6 @@ export default {
 
             // console.log("linter-kibit: data", data);
 
-            if (exitCode === 0) {
-              return [];
-            }
-
             if (exitCode === 1 && stdout && !stderr) {
               const regex = /[^:]+:(\d+):\nConsider using:\n([\s\S]+)\ninstead of:\n([\s\S]+)/;
 
@@ -80,7 +76,7 @@ export default {
               return messages;
             }
 
-            return null;
+            return [];
           });
       }
     };

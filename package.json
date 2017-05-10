@@ -1,9 +1,14 @@
 {
   "name": "linter-kibit",
   "main": "./index.js",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "An Atom Linter package for kibit (Clojure, ClojureScript)",
-  "keywords": ["linter", "kibit", "clojure", "clojurescript"],
+  "keywords": [
+    "linter",
+    "kibit",
+    "clojure",
+    "clojurescript"
+  ],
   "repository": "https://github.com/rgdelato/linter-kibit",
   "license": "MIT",
   "engines": {

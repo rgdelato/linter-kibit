@@ -2,13 +2,12 @@
 
 import { CompositeDisposable } from "atom";
 
+const linterName = "linter-kibit";
 let leinExecutablePath;
 
 export default {
   activate() {
     require("atom-package-deps").install("linter-kibit");
-
-    const linterName = "linter-kibit";
 
     this.subscriptions = new CompositeDisposable();
 
@@ -37,9 +36,15 @@ export default {
 
         return helpers
           .exec(leinExecutablePath, ["kibit", editorPath], {
+            uniqueKey: linterName,
             stream: "both"
           })
           .then(function(data) {
+            if (!data) {
+              // console.log("linter-kibit: process killed", data);
+              return null;
+            }
+
             const { exitCode, stdout, stderr } = data;
 
             // console.log("linter-kibit: data", data);
@@ -48,12 +53,12 @@ export default {
               const regex = /[^:]+:(\d+):\nConsider using:\n([\s\S]+)\ninstead of:\n([\s\S]+)/;
 
               const messages = stdout
-                .split("\n\n")
+                .split(/[\r\n]{2,}/)
                 .map(function(kibit) {
                   const exec = regex.exec(kibit);
 
                   if (!exec) {
-                    console.log("linter-kibit: failed exec", kibit);
+                    // console.log("linter-kibit: failed exec", kibit);
                     return null;
                   }
 
@@ -69,7 +74,7 @@ export default {
                     excerpt: `Consider using:\n${excerpt}`
                   };
                 })
-                .filter(m => m);
+                .filter(m => m); // filter out null messages
 
               // console.log("linter-kibit: messages", messages);
 
